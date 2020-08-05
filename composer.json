@@ -1,0 +1,23 @@
+{
+    "name": "greencheap/extension-seo",
+    "type": "greencheap-extension",
+    "version": "1.0.0",
+    "title": "SEO",
+    "description": "Web sitenize seo yönetimi yapmanıza olanak sağlayan eklenti.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "GreenCheap",
+            "email": "support@greencheap.net",
+            "homepage": "http://greencheap.net"
+        }
+    ],
+    "extra": {
+        "image": "image.jpg",
+        "scripts": "scripts.php",
+        "icon": "icon.svg"
+    },
+    "archive": {
+        "exclude": ["node_modules", "!/app"]
+    }
+}
