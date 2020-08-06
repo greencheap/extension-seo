@@ -1,4 +1,6 @@
 {
     "requirements":{},
-    "compatible":{}
+    "compatible":{
+        "seo":"*"
+    }
 }
