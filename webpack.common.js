@@ -3,7 +3,10 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        'modules/node-meta':'./app/modules/node-meta.vue'
+        'modules/node-meta':'./app/modules/node-meta.vue',
+        'modules/categories-meta':'./app/modules/categories-meta.vue',
+        'modules/blog-meta':'./app/modules/blog-meta.vue',
+        'modules/docs-meta':'./app/modules/docs-meta.vue',
     },
     output: {
         path: path.resolve(__dirname, './app/bundle'),
