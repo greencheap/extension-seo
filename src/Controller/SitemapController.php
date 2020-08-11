@@ -27,7 +27,7 @@ class SitemapController
     {
         $sitemap_service = new SitemapService();
 
-        $nodes = Node::where(['status = ?' , 'type != ?'], [1 , 'external'])->where(function ($query) {
+        $nodes = Node::where(['status = :status' , 'type != :type'], ['status' => 1 , 'type' => 'external'])->where(function ($query) {
             return $query->where('roles IS NULL')->whereInSet('roles', App::user()->roles, false, 'OR');
         })->get();
 
