@@ -7,6 +7,7 @@ module.exports = {
         'modules/categories-meta':'./app/modules/categories-meta.vue',
         'modules/blog-meta':'./app/modules/blog-meta.vue',
         'modules/docs-meta':'./app/modules/docs-meta.vue',
+        'seo-settings':'./app/components/seo-settings.vue',
     },
     output: {
         path: path.resolve(__dirname, './app/bundle'),

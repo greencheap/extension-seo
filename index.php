@@ -10,6 +10,18 @@ return [
         '/seo' => [
             'name' => '@seo',
             'controller' => 'GreenCheap\\SEO\\Controller\\SitemapController'
+        ],
+        '/api/seo' => [
+            'name' => '@api/seo',
+            'controller' => 'GreenCheap\\SEO\\Controller\\ApiSitemapController'
+        ]
+    ],
+
+    'settings' => 'seo-settings',
+
+    'config' => [
+        'sitemap' => [
+            'sitemap_per_page' => 50
         ]
     ],
 
@@ -22,6 +34,8 @@ return [
             $scripts->register('seo-categories-meta', 'seo:app/bundle/modules/categories-meta.js', '~categories-edit');
             $scripts->register('seo-blog-meta', 'seo:app/bundle/modules/blog-meta.js', '~post-edit');
             $scripts->register('seo-docs-meta', 'seo:app/bundle/modules/docs-meta.js', '~docs_admin_edit');
-        }
+            $scripts->register('seo-settings', 'seo:app/bundle/seo-settings.js', ['~extensions', 'input-tree']);
+        },
+
     ],
 ];

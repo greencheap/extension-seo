@@ -1,4 +1,5 @@
 <?php 
+use GreenCheap\Application as App;
 return [
     'install' => function($app)
     {
@@ -12,7 +13,10 @@ return [
 
     'enable' => function($app)
     {
-        $util = $app['db']->getUtility();
+        $path = App::get('path');
+        if(!$app['file']->exists("$path/robots.txt")){
+            $app['file']->copy("$path/packages/greencheap/seo/.robots" , "$path/robots.txt");
+        }
     },
 
     'update' => function($app)
