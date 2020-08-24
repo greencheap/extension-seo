@@ -1,7 +1,7 @@
 {
     "name": "greencheap/seo",
     "type": "greencheap-extension",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "title": "SEO",
     "description": "Web sitenize seo yönetimi yapmanıza olanak sağlayan eklenti.",
     "license": "MIT",
