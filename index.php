@@ -6,10 +6,23 @@ return [
         'GreenCheap\\SEO\\' => 'src'
     ],
 
+    'menu' => [
+        'seo' => [
+            'label' => 'Seo',
+            'icon' => 'seo:icon.svg',
+            'url' => '@seo/admin',
+            'active' => '@seo/admin',
+            'access' => 'seo: module management access'
+        ]
+    ],
+
     'routes' => [
         '/seo' => [
             'name' => '@seo',
-            'controller' => 'GreenCheap\\SEO\\Controller\\SitemapController'
+            'controller' => [
+                'GreenCheap\\SEO\\Controller\\SitemapController',
+                'GreenCheap\\SEO\\Controller\\Admin\\SeoController'
+            ]
         ],
         '/api/seo' => [
             'name' => '@api/seo',
@@ -22,6 +35,16 @@ return [
     'config' => [
         'sitemap' => [
             'sitemap_per_page' => 50
+        ]
+    ],
+
+    'permissions' => [
+        'seo: module management access' => [
+            'title' => 'Module management'
+        ],
+
+        'seo: redirect management' => [
+            'title' => 'Redirect management'
         ]
     ],
 
