@@ -57,7 +57,7 @@ class SitemapController
 
         foreach($categories as $category){
             foreach($category->getPosts() as $post){
-                $sitemap_service->addItem(App::url('@docs/slug', ['slug' => $post->slug ?: 0], 0) , $post->modified->format('Y-m-d'));
+                $sitemap_service->addItem(App::url('@docs/id', ['id' => $post->id ?: 0], 0) , $post->modified->format('Y-m-d'));
             }
         }
         return $sitemap_service->render();
