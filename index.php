@@ -10,9 +10,10 @@ return [
         'seo' => [
             'label' => 'Seo',
             'icon' => 'seo:icon.svg',
-            'url' => '@seo/admin',
-            'active' => '@seo/admin',
-            'access' => 'seo: module management access'
+            //'url' => '@seo/admin',
+            //'active' => '@seo/admin',
+            'access' => 'seo: module management access',
+            'priority' => 115
         ]
     ],
 
@@ -21,7 +22,7 @@ return [
             'name' => '@seo',
             'controller' => [
                 'GreenCheap\\SEO\\Controller\\SitemapController',
-                'GreenCheap\\SEO\\Controller\\Admin\\SeoController'
+                //'GreenCheap\\SEO\\Controller\\Admin\\SeoController'
             ]
         ],
         '/api/seo' => [

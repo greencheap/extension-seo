@@ -6,6 +6,7 @@
 
 <script>
 import ModuleSeo from '../components/module-seo.vue';
+
 let seo = {
 
     props: ['post'],
