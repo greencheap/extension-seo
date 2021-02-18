@@ -3,7 +3,7 @@
     "type": "greencheap-extension",
     "version": "1.0.6",
     "title": "SEO",
-    "description": "Web sitenize seo yönetimi yapmanıza olanak sağlayan eklenti.",
+    "description": "Plugin that allows you to do SEO management for your website.",
     "license": "MIT",
     "authors": [
         {
