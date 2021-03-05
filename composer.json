@@ -17,6 +17,7 @@
     },
     "extra": {
         "image": "image.jpg",
+        "icon": "icon.svg",
         "scripts": "scripts.php"
     },
     "archive": {

@@ -5,6 +5,7 @@ use GreenCheap\SEO\Services\SitemapService;
 use GreenCheap\Site\Model\Node;
 use GreenCheap\Application as App;
 use GreenCheap\System\Model\StatusModelTrait;
+
 /**
  * @Route("/sitemap" , name="sitemap")
  */

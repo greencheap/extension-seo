@@ -7,14 +7,14 @@ return [
     ],
 
     'menu' => [
-        'seo' => [
-            'label' => 'Seo',
-            'icon' => 'seo:icon.svg',
+        //'seo' => [
+            //'label' => 'Seo',
+            //'icon' => 'seo:icon.svg',
             //'url' => '@seo/admin',
             //'active' => '@seo/admin',
-            'access' => 'seo: module management access',
-            'priority' => 115
-        ]
+            //'access' => 'seo: module management access',
+            //'priority' => 115
+        //]
     ],
 
     'routes' => [
