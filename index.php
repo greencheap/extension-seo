@@ -50,16 +50,39 @@ return [
     ],
 
     'events' => [
-        'view.system/site/admin/edit' => function($event, $view){
+        'view.system/site/admin/edit' => function($event, $view) {
             $view->script('seo-node-meta', 'seo:app/bundle/modules/node-meta.js', 'site-edit');
         },
 
-        'view.scripts' => function($event , $scripts){
+        'view.scripts' => function($event , $scripts) {
             $scripts->register('seo-categories-meta', 'seo:app/bundle/modules/categories-meta.js', '~categories-edit');
             $scripts->register('seo-blog-meta', 'seo:app/bundle/modules/blog-meta.js', '~post-edit');
             $scripts->register('seo-docs-meta', 'seo:app/bundle/modules/docs-meta.js', '~docs_admin_edit');
             $scripts->register('seo-settings', 'seo:app/bundle/seo-settings.js', ['~extensions', 'input-tree']);
         },
 
+        'view.meta' => [function ($event, $meta) use ($app) {
+            if($meta->get('og:title')){
+                $title[] = $app->config('system/site')->get('title');
+                $title[] = $meta->get('og:title');
+
+                if ($app->request()->getPathInfo() === '/') {
+                    $title = array_reverse($title);
+                }
+
+                $meta->add('title', implode(' | ', $title));
+            }else{
+                if ($meta->get('title')) {
+                    $title[] = $meta->get('title');
+                }
+
+                $title[] = $app->config('system/site')->get('title');
+                if ($app->request()->getPathInfo() === '/') {
+                    $title = array_reverse($title);
+                }
+
+                $meta->add('title', implode(' | ', $title));
+            }
+        }, -51]
     ],
 ];

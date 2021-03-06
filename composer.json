@@ -1,7 +1,7 @@
 {
     "name": "greencheap/seo",
     "type": "greencheap-extension",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "title": "SEO",
     "description": "Plugin that allows you to do SEO management for your website.",
     "license": "MIT",
