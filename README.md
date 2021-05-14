@@ -1,1 +1,1 @@
-# Extension SEO
+# GreenCheap SEO
