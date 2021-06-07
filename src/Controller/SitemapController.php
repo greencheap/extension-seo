@@ -3,7 +3,7 @@ namespace GreenCheap\Seo\Controller;
 
 use GreenCheap\Application as App;
 use GreenCheap\Seo\Sitemaps;
-use Sabre\Xml\Service;
+use Sabre\Xml\Service as SabreService;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -20,7 +20,7 @@ class SitemapController extends Sitemaps
         $response = new Response();
         $response->headers->set('content-type', 'application/xml');
 
-        $xmlService = new Service();
+        $xmlService = new SabreService();
 
         $data = [];
 
@@ -40,10 +40,12 @@ class SitemapController extends Sitemaps
 
     /**
      * @Route("/{sitemap}.xml", format="xml", name="sitemap")
-     * @param $sitemap
-     * @return Response
+     * @Route("/{sitemap}/page_{page}.xml", format="xml", name="page")
+     * @param string $sitemap
+     * @param int $page
+     * @return mixed
      */
-    public function sitemapAction($sitemap): Response
+    public function sitemapAction(string $sitemap, int $page = 0, ): mixed
     {
         $module = (object) $this->get($sitemap);
         if(!$module){
@@ -55,14 +57,14 @@ class SitemapController extends Sitemaps
         $response = new Response();
         $response->headers->set('content-type', 'application/xml');
 
-        $xmlService = new Service();
+        $xmlService = new SabreService();
 
         if(!class_exists($generator)){
             return App::abort(404, 'Not Found Class');
         }
 
         $data = new $generator;
-        $write = $xmlService->write('urlset', $data->getData());
+        $write = $xmlService->write('urlset', $data->getData($page));
 
         $response->setContent($write);
         return $response;

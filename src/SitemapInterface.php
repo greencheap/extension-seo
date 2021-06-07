@@ -1,4 +1,5 @@
 <?php
+
 namespace GreenCheap\Seo;
 
 /**
@@ -7,5 +8,5 @@ namespace GreenCheap\Seo;
  */
 interface SitemapInterface
 {
-    public function getData();
+    public function getData($page = 0);
 }
