@@ -20,10 +20,6 @@ return [
         'node' => [
             'name' => 'node',
             'generator' => 'GreenCheap\\Seo\\Sitemaps\\NodeSitemap'
-        ],
-        'blog' => [
-            'name' => 'blog',
-            'generator' => 'GreenCheap\\Seo\\Sitemaps\\BlogSitemap'
         ]
     ],
 
