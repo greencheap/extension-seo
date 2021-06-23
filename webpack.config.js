@@ -1,33 +1,31 @@
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const path = require('path');
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const path = require("path");
 
 module.exports = {
     entry: {
-        'seo-module':'./app/components/seo-module.vue'
+        "node-meta": "./app/modules/node-meta.vue",
+        "blog-meta": "./app/modules/blog-meta.vue",
+        "blog-category-meta": "./app/modules/blog-category-meta.vue",
     },
     output: {
-        path: path.resolve(__dirname, './app/bundle'),
-        filename: '[name].js'
+        path: path.resolve(__dirname, "./app/bundle"),
+        filename: "[name].js",
     },
     module: {
-        rules: [{
-            test: /\.vue$/,
-            loader: 'vue-loader'
-        },
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: "vue-loader",
+            },
             {
                 test: /\.js$/,
-                loader: 'babel-loader'
+                loader: "babel-loader",
             },
             {
                 test: /\.css$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader',
-                ]
-            }
-        ]
+                use: ["vue-style-loader", "css-loader"],
+            },
+        ],
     },
-    plugins: [
-        new VueLoaderPlugin()
-    ]
+    plugins: [new VueLoaderPlugin()],
 };

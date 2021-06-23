@@ -7,7 +7,6 @@ use JetBrains\PhpStorm\Pure;
 
 class Sitemaps
 {
-
     /**
      * @var array
      */
@@ -27,10 +26,10 @@ class Sitemaps
     public function setPackages(): void
     {
         $modules = App::module()->all();
-        foreach($modules as $module){
+        foreach ($modules as $module) {
             $config = $module->options;
-            if(array_key_exists('sitemaps', $config)){
-                foreach($config['sitemaps'] as $key => $sitemapModule){
+            if (array_key_exists("sitemaps", $config)) {
+                foreach ($config["sitemaps"] as $key => $sitemapModule) {
                     $this->modules[$key] = $sitemapModule;
                 }
             }
@@ -51,9 +50,9 @@ class Sitemaps
      * @return object|bool
      */
     #[Pure]
-    public function get($key): object | bool
+    public function get($key): object|bool
     {
-        if(array_key_exists($key, $this->modules)){
+        if (array_key_exists($key, $this->modules)) {
             return (object) $this->modules[$key];
         }
 

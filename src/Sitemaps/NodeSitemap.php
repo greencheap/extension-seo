@@ -20,8 +20,9 @@ class NodeSitemap implements SitemapInterface
     /**
      * NodeSitemap constructor.
      */
-    public function __construct(){
-        $this->date = new \DateTime;
+    public function __construct()
+    {
+        $this->date = new \DateTime();
     }
 
     /**
@@ -32,12 +33,12 @@ class NodeSitemap implements SitemapInterface
     {
         $data = [];
 
-        foreach($this->getNodes() as $node){
+        foreach ($this->getNodes() as $node) {
             $data[] = [
-                'url' => [
-                    'loc' => App::url()->base(0).$node->getUrl(true),
-                    'lastmod' => $this->date->format('Y-m-d')
-                ]
+                "url" => [
+                    "loc" => App::url()->base(0) . $node->getUrl(true),
+                    "lastmod" => $this->date->format("Y-m-d"),
+                ],
             ];
         }
 
@@ -49,8 +50,10 @@ class NodeSitemap implements SitemapInterface
      */
     public function getNodes(): array
     {
-        return Node::where(['status = :status', 'type != :type'], ['status' => 1, 'type' => 'external'])->where(function ($query) {
-            return $query->where('roles IS NULL')->whereInSet('roles', App::user()->roles, false, 'OR');
-        })->get();
+        return Node::where(["status = :status", "type != :type"], ["status" => 1, "type" => "external"])
+            ->where(function ($query) {
+                return $query->where("roles IS NULL")->whereInSet("roles", App::user()->roles, false, "OR");
+            })
+            ->get();
     }
 }

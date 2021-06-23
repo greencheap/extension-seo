@@ -23,7 +23,7 @@ class DocsSitemap implements SitemapInterface
      */
     public function __construct()
     {
-        $this->date = new \DateTime;
+        $this->date = new \DateTime();
     }
 
     /**
@@ -34,16 +34,21 @@ class DocsSitemap implements SitemapInterface
     {
         $data = [];
 
-        $categories = Category::where(['status = :status'], ['status' => StatusModelTrait::getStatus('STATUS_PUBLISHED')])->where(function ($query) {
-            return $query->where('roles IS NULL')->whereInSet('roles', App::user()->roles, false, 'OR');
-        })->orderBy('priority', 'asc')->related('posts')->get();
+        $categories = Category::where(["status = :status"], ["status" => StatusModelTrait::getStatus("STATUS_PUBLISHED")])
+            ->where(function ($query) {
+                return $query->where("roles IS NULL")->whereInSet("roles", App::user()->roles, false, "OR");
+            })
+            ->orderBy("priority", "asc")
+            ->related("posts")
+            ->get();
 
         foreach ($categories as $category) {
             foreach ($category->getPosts() as $post) {
                 $data[] = [
-                    'url' => [
-                        'loc' => App::url('@docs/id', ['id' => $post->id ?: 0], 0), 'lastmod' => $post->modified->format('Y-m-d')
-                    ]
+                    "url" => [
+                        "loc" => App::url("@docs/id", ["id" => $post->id ?: 0], 0),
+                        "lastmod" => $post->modified->format("Y-m-d"),
+                    ],
                 ];
             }
         }

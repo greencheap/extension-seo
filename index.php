@@ -1,4 +1,7 @@
 <?php
+
+use GreenCheap\View\Event\ViewEvent;
+
 return [
     "name" => "seo",
 
@@ -7,44 +10,53 @@ return [
     ],
 
     "nodes" => [
-        'sitemap' => [
-            'name' => '@sitemap',
-            'label' => 'Sitemap',
-            'controller' => 'GreenCheap\\Seo\\Controller\\SitemapController',
-            'protected' => true,
-            'frontpage' => true
-        ]
+        "sitemap" => [
+            "name" => "@sitemap",
+            "label" => "Sitemap",
+            "controller" => "GreenCheap\\Seo\\Controller\\SitemapController",
+            "protected" => true,
+            "frontpage" => true,
+        ],
     ],
 
     "sitemaps" => [
-        'node' => [
-            'name' => 'node',
-            'generator' => 'GreenCheap\\Seo\\Sitemaps\\NodeSitemap'
-        ]
+        "node" => [
+            "name" => "node",
+            "generator" => "GreenCheap\\Seo\\Sitemaps\\NodeSitemap",
+        ],
     ],
 
-    'events' => [
-        'view.meta' => [function ($event, $meta) use ($app) {
-            if ($meta->get('og:title')) {
-                $title[] = $app->config('system/site')->get('title');
-                $title[] = $meta->get('og:title');
+    "events" => [
+        "view.system/site/admin/edit" => function ($event, $view) {
+            $view->script("node-seo", "seo:app/bundle/node-meta.js", ["site-edit", "multi-finder"]);
+        },
 
-                if ($app->request()->getPathInfo() === '/') {
-                    $title = array_reverse($title);
+        "view.meta" => [
+            function ($event, $meta) use ($app) {
+                if ($app->isAdmin()) {
+                    return;
                 }
 
-                $meta->add('title', implode(' | ', $title));
-            } else {
-                if ($meta->get('title')) {
-                    $title[] = $meta->get('title');
-                }
+                if ($meta->get("og:title")) {
+                    $title[] = $app->config("system/site")->get("title");
+                    $title[] = $meta->get("og:title");
+                } else {
 
-                $title[] = $app->config('system/site')->get('title');
-                if ($app->request()->getPathInfo() === '/') {
-                    $title = array_reverse($title);
+                    if ($meta->get("title")) {
+                        $title[] = $meta->get("title");
+                    }
+
+                    $title[] = $app->config("system/site")->get("title");
                 }
-                $meta->add('title', implode(' | ', $title));
-            }
-        }, -51]
-    ]
+                $title = array_reverse($title);
+                $meta->add("title", implode(" | ", $title));
+            },
+            -51,
+        ],
+
+        "view.scripts" => function ($event, $scripts) {
+            $scripts->register('blog-meta', 'seo:app/bundle/blog-meta.js', '~post-edit');
+            $scripts->register('blog-category-meta', 'seo:app/bundle/blog-category-meta.js', ['~categories-edit', 'multi-finder']);
+        }
+    ],
 ];
