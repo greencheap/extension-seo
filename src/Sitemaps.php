@@ -58,4 +58,12 @@ class Sitemaps
 
         return false;
     }
+
+    /**
+     * @return string
+     */
+    public static function getLastModFormat(): string
+    {
+        return "Y-m-dTH:i:sP";
+    }
 }
