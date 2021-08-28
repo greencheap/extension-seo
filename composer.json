@@ -20,6 +20,11 @@
         "scripts": "scripts.php",
         "icon": "icon.svg"
     },
+    "appstore": {
+        "greencheap_version": "3",
+        "requirements": {},
+        "compatible": {}
+    },
     "archive": {
         "exclude": [
             "node_modules",
