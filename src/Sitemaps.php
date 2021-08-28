@@ -66,4 +66,12 @@ class Sitemaps
     {
         return "Y-m-dTH:i:sP";
     }
+
+    /**
+     * @return int
+     */
+    public static function getPerLimit(): int
+    {
+        return 50;
+    }
 }
